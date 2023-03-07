@@ -1,0 +1,22 @@
+.idea
+src
+
+# macOS file we don't care about
+.DS_Store
+
+# aaron's python3 environment
+env
+gens
+ext_doc
+
+# aarons sandbox
+ab_sandbox
+
+# until I hear otherwise, I don't want to store ACLU source files in a repo
+data/src/*.pdf
+data/aclu_ocr/*.pdf
+hocr
+xml2data
+hocr2db
+txt2db
+rptEd

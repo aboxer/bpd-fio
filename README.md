@@ -1,12 +1,12 @@
 # BPD SWAT FIO Investigation
-A shinyapp to do complex text searches of the BPD SWAT narratives
+Anaylze the BPD FIO records from 2011 through 2022
 
 ## Folder Structure
 ```
 ├── env                - python3 virtual environment packages
 ├── README.md
 ├── requirements.txt   - python packages required by this environment
-├── incoming           - processes the soiurce data into a usable database
-└── src                - souerce data from BPD
+├── incoming           - processes the source data into a usable database
+└── src                - source data from BPD
 ```
 

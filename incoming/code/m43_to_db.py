@@ -4,6 +4,7 @@ import json
 import csv
 import os
 import datetime
+import json
 
 parser = argparse.ArgumentParser()
 parser.add_argument('src', help='directory of all bpd fios')
@@ -17,8 +18,6 @@ def tsDate(date):
   return ts
 
 #get all the rows in all the mark43 format files
-fio_id = 0
-fio_date = 1
 fios = []
 for file in os.listdir(args.src):
   if file.startswith("fios_"):
@@ -28,19 +27,37 @@ for file in os.listdir(args.src):
       #hdr = reader.next()
       next(reader)
       for row in reader:
-        ts = tsDate(row[fio_date])
-        fios.append([row[fio_id],ts,row[fio_date]])
+        ts = tsDate(row[1])
+        dat = [row[0],ts,row[1]]
+        dat.extend(row[2:])
+        fios.append(dat)
 
 #merge rows with duplicate fio_ids.
 #if the duplicate column differs, change the column value to a list of all the different values
-uniqs = []
+uniq_fios = []
+uniq_ids = []
 dups = []
-for i,fio in enumerate(fios):
-  val = fio[fio_id]
-  if val in uniqs:
-    dups.append([i,val])
+for off,fio in enumerate(fios):
+  fio_id = fio[0]
+  if fio_id in uniq_ids:
+    dups.append([off,fio_id])
   else:
-    uniqs.append(val)
+    uniq_ids.append(fio_id)
+    uniq_fios.append(fio)
 
-res = list(set(fio_ids))
-print(fios)
+for dup_off,dup_id in dups:
+  dup_fio = fios[dup_off]
+  uniq_off = uniq_ids.index(dup_id)
+  uniq_fio = uniq_fios[uniq_off]
+  for i,val in enumerate(dup_fio):
+    if isinstance(uniq_fio[i], list):
+      uniq_fio[i].append(val)
+    else:
+      if val != uniq_fio[i]:
+        uniq_fio[i] = [uniq_fio[i],val]
+
+#res = list(set(fio_ids))
+with open(args.genf,'w') as f:
+  json.dump(fios,f, indent=2)
+exit()
+#print(fios)

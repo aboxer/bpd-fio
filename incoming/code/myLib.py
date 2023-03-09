@@ -47,4 +47,4 @@ def mkUniqs(fios):
 	    else:
 	      if val != uniq_fio[i]:
 	        uniq_fio[i] = [uniq_fio[i],val]
-	  return uniq_fios
+	return uniq_fios

@@ -28,6 +28,7 @@ def getRecords(src_dir,file_prefix):
         reader = csv.reader(f)
         next(reader)
         for row in reader:
+          row = [None if x == 'NULL' else x for x in row]
           fios.append(row)
   return fios
 
@@ -87,6 +88,12 @@ for uniq_sus in uniq_suss:
     uniq_fios[uniq_fio_off].extend(uniq_sus[2:])
   except:
     pass
+
+dummy = [None]*12
+for uniq_fio in uniq_fios:
+  if len(uniq_fio) != 34:
+    uniq_fio.extend(dummy)
+  uniq_fio.append(tsDate(uniq_fio[1]))
 
 with open(args.genf,'w') as f:
   json.dump(uniq_fios,f, indent=2)

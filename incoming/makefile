@@ -29,7 +29,7 @@ rms: $(code_dir)rms_to_db.py
 old: $(code_dir)old_to_db.py
 	touch $(code_dir)old_to_db.py
 	python $(mpdb) $(code_dir)old_to_db.py \
-	  $(in_dir)old_rms/fios_2011_15.csv \
+	  $(in_dir)old_rms/ \
 		$(gen_dir)old_db.json \
 		$(gen_dir)old_db.txt
 

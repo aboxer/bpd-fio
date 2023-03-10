@@ -17,7 +17,7 @@ log = open(args.logf,"w")
 ######################### get fios ####################################
 #get all the rows in all the mark43 fio files
 fios = ml.getRecords(args.inf,"fios_")
-fios = fios[1:] #2nd colum is the fio_id that we need to identify unique fios
+fios = [x[1:] for x in fios] #2nd colum is the fio_id that we need to identify unique fios
 
 #merge rows with duplicate fio_ids.
 #if the duplicate column differs, change the column value to a list of all the different values

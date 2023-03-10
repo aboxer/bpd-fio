@@ -27,10 +27,8 @@ uniq_fios = ml.mkUniqs(fios)
 ######################### get suspects ################################
 #get all the rows in all the mark43 suspect files
 #2021,2022 have sligntly different format that must be fixed
-raw_suss = ml.getRecords(args.src,"suss_")
-suss = []
-for sus in raw_suss:
-  suss.append(sus[1:])
+suss = ml.getRecords(args.src,"suss_")
+suss = [x[1:] for x in suss]
 
 uniq_suss = ml.mkUniqs(suss)
 

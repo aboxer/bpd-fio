@@ -59,7 +59,7 @@ for uniq_fio in uniq_fios:
 with open(args.genf,'w') as f:
   json.dump(uniq_fios,f, indent=2)
 
-log.write(f'fios = {len(fios)} uniq_fios = {len(uniq_fios)} no_suss = {no_suss} no_fios = {no_fios}\n') 
+log.write(f'fios = {len(fios)} uniq_fios = {len(uniq_fios)} suss = {len(suss)} uniq_suss = {len(uniq_suss)} no_suss = {no_suss} no_fios = {no_fios}\n') 
 cols = ['fc_num','contact_date','contact_officer','contact_officer_name','supervisor','supervisor_name','street','city','state','zip','stop_duration','circumstance','basis','vehicle_year','vehicle_state','vehicle_model','vehicle_color','vehicle_style','vehicle_type','key_situations','narrative','weather','sex','race','age','build','hair_style','skin_tone','ethnicity','otherclothing','deceased','license_state','license_type','frisk/search']
 nums = [x for x in range(len(cols))] 
 tbl = zip(cols,nums)

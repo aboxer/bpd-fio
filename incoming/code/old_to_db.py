@@ -29,7 +29,7 @@ with open(args.genf,'w') as f:
   json.dump(uniq_fios,f, indent=2)
 
 log.write(f'fios = {len(fios)} uniq_fios = {len(uniq_fios)}\n')
-cols = ['seq_num','fio_id','sex','location','dist','dist_id','fio_date','fio_time','priors','description','clothing','complexion','fiofs_type','terrorism','search','basis','stop_reasons','enteredby','fiofs_reasons','outcome','veh_make','veh_year_num','veh_color','veh_model','veh_occupant','veh_state','supervisor_id','officer_id','supervisor','off_dist_id','off_dist','officer','sup_entrydate','last_updateby','last_updatetime','ethnicity','first_inserttime','active_id','race_id','race_desc','fio_date_corrected','age_at_fio_corrected','street_id','city']
+cols = ['fio_id','sex','location','dist','dist_id','fio_date','fio_time','priors','description','clothing','complexion','fiofs_type','terrorism','search','basis','stop_reasons','enteredby','fiofs_reasons','outcome','veh_make','veh_year_num','veh_color','veh_model','veh_occupant','veh_state','supervisor_id','officer_id','supervisor','off_dist_id','off_dist','officer','sup_entrydate','last_updateby','last_updatetime','ethnicity','first_inserttime','active_id','race_id','race_desc','fio_date_corrected','age_at_fio_corrected','street_id','city']
 
 nums = [x for x in range(len(cols))] 
 tbl = zip(cols,nums)

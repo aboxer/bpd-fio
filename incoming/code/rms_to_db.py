@@ -58,10 +58,18 @@ with open(args.genf,'w') as f:
   json.dump(uniq_fios,f, indent=2)
 
 log.write(f'fios = {len(fios)} uniq_fios = {len(uniq_fios)} suss = {len(suss)} uniq_suss = {len(uniq_suss)} no_suss = {no_suss} no_fios = {no_fios}\n') 
-cols = ['fc_num','contact_date','contact_officer','contact_officer_name','supervisor','supervisor_name','street','city','state','zip','frisked','searchperson','searchvehicle','summonsissued','stop_duration','circumstance','basis','vehicle_year','vehicle_state','vehicle_make','vehicle_model','vehicle_color','vehicle_style','vehicle_type','contact_reason','sex','race','age','build','hair_style','complexion','ethnicity','otherclothing']
 
-nums = [x for x in range(len(cols))] 
-tbl = zip(cols,nums)
+cols = ['fc_num','contact_date','contact_officer','contact_officer_name','supervisor','supervisor_name','street','city','state','zip','frisked','searchperson','searchvehicle','summonsissued','stop_duration','circumstance','basis','vehicle_year','vehicle_state','vehicle_make','vehicle_model','vehicle_color','vehicle_style','vehicle_type','contact_reason','sex','race','age','build','hair_style','complexion','ethnicity','otherclothing']
+cols_sz = len(cols)
+nums = [x for x in range(cols_sz)] 
+
+multi_cols = ['']*cols_sz
+for uniq_fio in uniq_fios:
+  for i in range(cols_sz):
+    if isinstance(uniq_fio[i],list): 
+      multi_cols[i] = '*'
+
+tbl = zip(cols,nums,multi_cols)
 log.write(tabulate(tbl))
 
 
